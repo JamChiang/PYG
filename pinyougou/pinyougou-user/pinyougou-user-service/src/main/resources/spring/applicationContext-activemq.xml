@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 真正可以产生 Connection 的 ConnectionFactory，由对应的 JMS 服务厂商提供 -->
+    <bean id="targetConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+        <property name="brokerURL" value="tcp://192.168.12.168:61616"/>
+    </bean>
+
+    <!-- Spring 用于管理真正的 ConnectionFactory 的 ConnectionFactory -->
+    <bean id="jmsConnectionFactory" class="org.springframework.jms.connection.SingleConnectionFactory">
+        <!-- 目标 ConnectionFactory 对应真实的可以产生 JMS Connection 的 ConnectionFactory -->
+        <property name="targetConnectionFactory" ref="targetConnectionFactory"/>
+    </bean>
+
+    <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+        <property name="connectionFactory" ref="jmsConnectionFactory"/>
+    </bean>
+
+    <!--队列模式，接收验证码发送信息 -->
+    <bean id="itcastSmsQueue" class="org.apache.activemq.command.ActiveMQQueue">
+        <constructor-arg value="itcast_sms_queue"/>
+    </bean>
+
+</beans>
