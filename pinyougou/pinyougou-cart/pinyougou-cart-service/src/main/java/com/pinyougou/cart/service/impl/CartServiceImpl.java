@@ -20,7 +20,6 @@ import java.util.List;
  * @desc todo
  */
 @Service(interfaceClass = CartService.class)
-@Transactional
 public class CartServiceImpl implements CartService {
 
     //redis中购物车列表的名称

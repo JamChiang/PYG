@@ -14,6 +14,4 @@ public interface UserService extends BaseService<TbUser> {
     void sendSmsCode(String phone);
 
     boolean checkSmsCode(String phone, String smsCode);
-
-    List<TbAddress> findAddressList(String username);
 }

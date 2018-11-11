@@ -2,25 +2,25 @@
 <html>
 
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE">
-    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"/>
     <title>产品详情页</title>
-    <link rel="stylesheet" type="text/css" href="../css/webbase.css" />
-    <link rel="stylesheet" type="text/css" href="../css/pages-item.css" />
-    <link rel="stylesheet" type="text/css" href="../css/pages-zoom.css" />
-    <link rel="stylesheet" type="text/css" href="../css/widget-cartPanelView.css" />
-    <script type="text/javascript" src="../plugins/angularjs/angular.min.js"> </script>
-    <script type="text/javascript" src="../js/base.js"> </script>
-    <script type="text/javascript" src="../js/controller/itemController.js"> </script>
+    <link rel="stylesheet" type="text/css" href="../css/webbase.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/pages-item.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/pages-zoom.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/widget-cartPanelView.css"/>
+    <script type="text/javascript" src="../plugins/angularjs/angular.min.js"></script>
+    <script type="text/javascript" src="../js/base.js"></script>
+    <script type="text/javascript" src="../js/controller/itemController.js"></script>
     <script type="text/javascript">
         //组装SKU列表
         var skuList = [
             <#list itemList as item>
                 {
-                    "id":"${item.id?c}",
-                    "title":"${item.title}",
-                    "price":"${item.price?c}",
+                    "id": "${item.id?c}",
+                    "title": "${item.title}",
+                    "price": "${item.price?c}",
                     "spec":${item.spec}
                 },
             </#list>
@@ -66,7 +66,7 @@
                     <div id="preview" class="spec-preview">
                         <span class="jqzoom">
                             <#if (imageList?size>0) >
-                                <img jqimg="${imageList[0].url}" src="${imageList[0].url}" width="400px" height="400px" />
+                                <img jqimg="${imageList[0].url}" src="${imageList[0].url}" width="400px" height="400px"/>
                             </#if>
                         </span>
                     </div>
@@ -77,7 +77,7 @@
                         <div class="items">
                             <ul>
                                 <#list imageList as image>
-                                    <li><img src="${image.url}" bimg="${image.url}" onmousemove="preview(this)" /></li>
+                                    <li><img src="${image.url}" bimg="${image.url}" onmousemove="preview(this)"/></li>
                                 </#list>
                             </ul>
                         </div>
@@ -121,7 +121,7 @@
                             <i>支　　持</i>
                         </div>
                         <div class="fl fix-width">
-                            <em class="t-gray">以旧换新，闲置手机回收  4G套餐超值抢  礼品购</em>
+                            <em class="t-gray">以旧换新，闲置手机回收 4G套餐超值抢 礼品购</em>
                         </div>
                     </div>
                     <div class="summary-wrap">
@@ -136,12 +136,12 @@
                 <div class="clearfix choose">
                     <div id="specification" class="summary-wrap clearfix">
                         <#list specificationList as spec>
-                        <dl>
-                            <dt>
-                                <div class="fl title">
-                                    <i>${spec.attributeName}</i>
-                                </div>
-                            </dt>
+                            <dl>
+                                <dt>
+                                    <div class="fl title">
+                                        <i>${spec.attributeName}</i>
+                                    </div>
+                                </dt>
                             <#list spec.attributeValue as option>
                             <dd>
                                 <a href="javascript:;" class="{{isSelected('${spec.attributeName}','${option}')?'selected':''}}"
@@ -151,7 +151,7 @@
                                 </a>
                             </dd>
                             </#list>
-                        </dl>
+                            </dl>
                         </#list>
                     </div>
 
@@ -159,7 +159,7 @@
                         <div class="fl title">
                             <div class="control-group">
                                 <div class="controls">
-                                    <input autocomplete="off" type="text" ng-model="num" value="{{num}}" minnum="1" class="itxt" />
+                                    <input autocomplete="off" type="text" ng-model="num" value="{{num}}" minnum="1" class="itxt"/>
                                     <a href="javascript:void(0)" class="increment plus" ng-click="addNum(1)">+</a>
                                     <a href="javascript:void(0)" class="increment mins" ng-click="addNum(-1)">-</a>
                                 </div>
@@ -207,7 +207,7 @@
                             <li>
                                 <div class="list-wrap">
                                     <div class="p-img">
-                                        <img src="../img/_/part01.png" />
+                                        <img src="../img/_/part01.png"/>
                                     </div>
                                     <div class="attr">
                                         <em>Apple苹果iPhone 6s (A1699)</em>
@@ -226,7 +226,7 @@
                             <li>
                                 <div class="list-wrap">
                                     <div class="p-img">
-                                        <img src="../img/_/part02.png" />
+                                        <img src="../img/_/part02.png"/>
                                     </div>
                                     <div class="attr">
                                         <em>Apple苹果iPhone 6s (A1699)</em>
@@ -245,7 +245,7 @@
                             <li>
                                 <div class="list-wrap">
                                     <div class="p-img">
-                                        <img src="../img/_/part03.png" />
+                                        <img src="../img/_/part03.png"/>
                                     </div>
                                     <div class="attr">
                                         <em>Apple苹果iPhone 6s (A1699)</em>
@@ -262,7 +262,7 @@
                                 </div>
                                 <div class="list-wrap">
                                     <div class="p-img">
-                                        <img src="../img/_/part02.png" />
+                                        <img src="../img/_/part02.png"/>
                                     </div>
                                     <div class="attr">
                                         <em>Apple苹果iPhone 6s (A1699)</em>
@@ -279,7 +279,7 @@
                                 </div>
                                 <div class="list-wrap">
                                     <div class="p-img">
-                                        <img src="../img/_/part03.png" />
+                                        <img src="../img/_/part03.png"/>
                                     </div>
                                     <div class="attr">
                                         <em>Apple苹果iPhone 6s (A1699)</em>
@@ -309,7 +309,7 @@
                         <div class="fl master">
                             <div class="list-wrap">
                                 <div class="p-img">
-                                    <img src="../img/_/l-m01.png" />
+                                    <img src="../img/_/l-m01.png"/>
                                 </div>
                                 <em>￥5299</em>
                                 <i>+</i>
@@ -319,7 +319,7 @@
                             <ul class="suit-list">
                                 <li class="">
                                     <div id="">
-                                        <img src="../img/_/dp01.png" />
+                                        <img src="../img/_/dp01.png"/>
                                     </div>
                                     <i>Feless费勒斯VR</i>
                                     <label data-toggle="checkbox" class="checkbox-pretty">
@@ -327,21 +327,21 @@
                                     </label>
                                 </li>
                                 <li class="">
-                                    <div id=""><img src="../img/_/dp02.png" /> </div>
+                                    <div id=""><img src="../img/_/dp02.png"/></div>
                                     <i>Feless费勒斯VR</i>
                                     <label data-toggle="checkbox" class="checkbox-pretty">
                                         <input type="checkbox"><span>50</span>
                                     </label>
                                 </li>
                                 <li class="">
-                                    <div id=""><img src="../img/_/dp03.png" /></div>
+                                    <div id=""><img src="../img/_/dp03.png"/></div>
                                     <i>Feless费勒斯VR</i>
                                     <label data-toggle="checkbox" class="checkbox-pretty">
                                         <input type="checkbox"><span>59</span>
                                     </label>
                                 </li>
                                 <li class="">
-                                    <div id=""><img src="../img/_/dp04.png" /></div>
+                                    <div id=""><img src="../img/_/dp04.png"/></div>
                                     <i>Feless费勒斯VR</i>
                                     <label data-toggle="checkbox" class="checkbox-pretty">
                                         <input type="checkbox"><span>99</span>
@@ -396,7 +396,7 @@
                                 </#list>
                             </ul>
                             <div class="intro-detail">
-                                ${goodsDesc.introduction!}
+                            ${goodsDesc.introduction!}
                             </div>
                         </div>
                         <div id="two" class="tab-pane">
@@ -424,7 +424,7 @@
                     <li class="yui3-u-1-6">
                         <div class="list-wrap">
                             <div class="p-img">
-                                <img src="../img/_/itemlike01.png" />
+                                <img src="../img/_/itemlike01.png"/>
                             </div>
                             <div class="attr">
                                 <em>DELL戴尔Ins 15MR-7528SS 15英寸 银色 笔记本</em>
@@ -443,7 +443,7 @@
                     <li class="yui3-u-1-6">
                         <div class="list-wrap">
                             <div class="p-img">
-                                <img src="../img/_/itemlike02.png" />
+                                <img src="../img/_/itemlike02.png"/>
                             </div>
                             <div class="attr">
                                 <em>Apple苹果iPhone 6s/6s Plus 16G 64G 128G</em>
@@ -462,7 +462,7 @@
                     <li class="yui3-u-1-6">
                         <div class="list-wrap">
                             <div class="p-img">
-                                <img src="../img/_/itemlike03.png" />
+                                <img src="../img/_/itemlike03.png"/>
                             </div>
                             <div class="attr">
                                 <em>DELL戴尔Ins 15MR-7528SS 15英寸 银色 笔记本</em>
@@ -481,7 +481,7 @@
                     <li class="yui3-u-1-6">
                         <div class="list-wrap">
                             <div class="p-img">
-                                <img src="../img/_/itemlike04.png" />
+                                <img src="../img/_/itemlike04.png"/>
                             </div>
                             <div class="attr">
                                 <em>DELL戴尔Ins 15MR-7528SS 15英寸 银色 笔记本</em>
@@ -500,7 +500,7 @@
                     <li class="yui3-u-1-6">
                         <div class="list-wrap">
                             <div class="p-img">
-                                <img src="../img/_/itemlike05.png" />
+                                <img src="../img/_/itemlike05.png"/>
                             </div>
                             <div class="attr">
                                 <em>DELL戴尔Ins 15MR-7528SS 15英寸 银色 笔记本</em>
@@ -519,7 +519,7 @@
                     <li class="yui3-u-1-6">
                         <div class="list-wrap">
                             <div class="p-img">
-                                <img src="../img/_/itemlike06.png" />
+                                <img src="../img/_/itemlike06.png"/>
                             </div>
                             <div class="attr">
                                 <em>DELL戴尔Ins 15MR-7528SS 15英寸 银色 笔记本</em>

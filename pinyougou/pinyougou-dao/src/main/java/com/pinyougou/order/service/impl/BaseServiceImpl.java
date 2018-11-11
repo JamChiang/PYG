@@ -1,4 +1,4 @@
-package com.pinyougou.service.impl;
+package com.pinyougou.order.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;

@@ -18,15 +18,15 @@ app.service("cartService", function ($http) {
             var cart = cartList[i];
             for (var j = 0; j < cart.orderItemList.length; j++) {
                 var orderItem = cart.orderItemList[j];
-                for (var k = 0; k < itemIds.length; k++) {
-                    var itemId = itemIds[k];
-                    if (itemId == orderItem.itemId){
-                        totalValue.totalNum += orderItem.num;
-                        totalValue.totalMoney += orderItem.totalFee;
-                    }
-                }
+                totalValue.totalNum += orderItem.num;
+                totalValue.totalMoney += orderItem.totalFee;
             }
         }
         return totalValue;
+    };
+
+    this.submitOrder=function (order) {
+        return $http.post("order/add.do",order);
     }
-});
+})
+;

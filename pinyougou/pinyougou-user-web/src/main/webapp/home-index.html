@@ -30,7 +30,7 @@
                         <li class="f-item">{{username}}　<span><a href="/logout/cas">退出登录</a></span></li>
 					</ul>
 					<ul class="fr">
-						<li class="f-item">我的订单</li>
+                        <li class="f-item"><a href="http://cart.pinyougou.com" >我的订单</a></li>
 						<li class="f-item space"></li>
 						<li class="f-item"><a href="home.html" target="_blank">我的品优购</a></li>
 						<li class="f-item space"></li>
@@ -69,7 +69,7 @@
 								<!--searchAutoComplete-->
 								<div class="input-append">
 									<input type="text" id="autocomplete" type="text" class="input-error input-xxlarge" />
-									<button class="sui-btn btn-xlarge btn-danger" type="button">搜索</button>
+									<button class="sui-btn btn-xlarge btn-danger" type="button" ng-click="addToCart()">搜索</button>
 								</div>
 							</form>
 						</div>

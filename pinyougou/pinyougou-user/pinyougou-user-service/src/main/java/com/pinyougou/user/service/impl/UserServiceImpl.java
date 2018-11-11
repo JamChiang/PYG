@@ -4,10 +4,9 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.pinyougou.mapper.UserMapper;
-import com.pinyougou.pojo.TbAddress;
 import com.pinyougou.pojo.TbUser;
 import com.pinyougou.user.service.UserService;
-import com.pinyougou.service.impl.BaseServiceImpl;
+import com.pinyougou.order.service.impl.BaseServiceImpl;
 import com.pinyougou.vo.PageResult;
 import org.apache.activemq.command.ActiveMQQueue;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +14,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.core.MessageCreator;
-import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;
 
 import javax.jms.JMSException;
@@ -26,7 +24,6 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 @Service(interfaceClass = UserService.class)
-@Transactional
 public class UserServiceImpl extends BaseServiceImpl<TbUser> implements UserService {
 
     @Autowired
@@ -98,14 +95,6 @@ public class UserServiceImpl extends BaseServiceImpl<TbUser> implements UserServ
             return true;
         }
         return false;
-    }
-
-    @Override
-    public List<TbAddress> findAddressList(String username) {
-        TbUser tbUser = new TbUser();
-        tbUser.setUsername(username);
-        List<TbUser> tbUsers = userMapper.select(tbUser);
-        return null;
     }
 
 }
