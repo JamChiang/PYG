@@ -1,10 +1,10 @@
 package com.pinyougou.user.service.impl;
 
 import com.alibaba.dubbo.config.annotation.Service;
-import com.fasterxml.jackson.databind.annotation.JsonAppend;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.pinyougou.mapper.UserMapper;
+import com.pinyougou.pojo.TbAddress;
 import com.pinyougou.pojo.TbUser;
 import com.pinyougou.user.service.UserService;
 import com.pinyougou.service.impl.BaseServiceImpl;
@@ -16,7 +16,6 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.core.MessageCreator;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.StringUtils;
 import tk.mybatis.mapper.entity.Example;
 
 import javax.jms.JMSException;
@@ -41,6 +40,8 @@ public class UserServiceImpl extends BaseServiceImpl<TbUser> implements UserServ
 
     @Autowired
     private ActiveMQQueue itcastSmsQueue;
+
+    @Autowired
 
     @Value("${signName}")
     private String signName;
@@ -82,7 +83,7 @@ public class UserServiceImpl extends BaseServiceImpl<TbUser> implements UserServ
                 mapMessage.setString("phoneNum", phone);
                 mapMessage.setString("signName", signName);
                 mapMessage.setString("templateCode", templateCode);
-                mapMessage.setString("templateParam", "{'code':"+code+"}");
+                mapMessage.setString("templateParam", "{'code':" + code + "}");
 
                 return mapMessage;
             }
@@ -98,4 +99,13 @@ public class UserServiceImpl extends BaseServiceImpl<TbUser> implements UserServ
         }
         return false;
     }
+
+    @Override
+    public List<TbAddress> findAddressList(String username) {
+        TbUser tbUser = new TbUser();
+        tbUser.setUsername(username);
+        List<TbUser> tbUsers = userMapper.select(tbUser);
+        return null;
+    }
+
 }

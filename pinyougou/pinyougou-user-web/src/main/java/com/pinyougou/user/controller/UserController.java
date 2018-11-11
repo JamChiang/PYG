@@ -2,6 +2,7 @@ package com.pinyougou.user.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.pinyougou.common.util.PhoneFormatCheckUtils;
+import com.pinyougou.pojo.TbAddress;
 import com.pinyougou.pojo.TbUser;
 import com.pinyougou.user.service.UserService;
 import com.pinyougou.vo.PageResult;
@@ -10,6 +11,7 @@ import com.sun.org.apache.regexp.internal.RE;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.codec.digest.Md5Crypt;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
