@@ -1,7 +1,7 @@
 package com.pinyougou.cart.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.pinyougou.service.OrderService;
+import com.pinyougou.order.service.OrderService;
 import com.pinyougou.pojo.TbOrder;
 import com.pinyougou.vo.PageResult;
 import com.pinyougou.vo.Result;

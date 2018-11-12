@@ -153,8 +153,8 @@
 					</div>
 					<div class="step-cont">
 						<ul class="payType">
-							<li class="{{order.payment=='1'?'selected':''}}" ng-click="selectPayType('1')">微信付款<span title="点击取消选择"></span></li>
-							<li class="{{order.payment=='2'?'selected':''}}" ng-click="selectPayType('2')">货到付款<span title="点击取消选择"></span></li>
+							<li class="{{order.paymentType=='1'?'selected':''}}" ng-click="selectPayType('1')">微信付款<span title="点击取消选择"></span></li>
+							<li class="{{order.paymentType=='2'?'selected':''}}" ng-click="selectPayType('2')">货到付款<span title="点击取消选择"></span></li>
 						</ul>
 					</div>
 					<div class="hr"></div>
@@ -213,8 +213,8 @@
 		<div class="order-summary">
 			<div class="static fr">
 				<div class="list">
-					<span><i class="number">{{totalValue.totalNum}}</i>件商品，总商品金额</span>
-					<em class="allprice">¥{{totalValue.totalMoney.toFixed(2)}}</em>
+					<span><i class="number">{{totalValue.sumNum}}</i>件商品，总商品金额</span>
+					<em class="allprice">¥{{totalValue.sumMoney.toFixed(2);}}</em>
 				</div>
 				<div class="list">
 					<span>返现：</span>
@@ -227,7 +227,7 @@
 			</div>
 		</div>
 		<div class="clearfix trade">
-			<div class="fc-price">应付金额:　<span class="price">¥{{totalValue.totalMoney.toFixed(2)}}</span></div>
+			<div class="fc-price">应付金额:　<span class="price">¥{{totalValue.sumMoney.toFixed(2);}}</span></div>
 			<div class="fc-receiverInfo">寄送至: {{address.address}} 收货人：{{address.contact}} {{address.mobile}}</div>
 		</div>
 		<div class="submit">

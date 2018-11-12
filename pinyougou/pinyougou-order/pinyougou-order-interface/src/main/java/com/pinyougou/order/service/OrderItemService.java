@@ -1,4 +1,4 @@
-package com.pinyougou.service;
+package com.pinyougou.order.service;
 
 import com.pinyougou.pojo.TbOrderItem;
 import com.pinyougou.vo.PageResult;

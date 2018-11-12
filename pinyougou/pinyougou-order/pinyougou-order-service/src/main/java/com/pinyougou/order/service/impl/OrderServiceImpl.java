@@ -10,18 +10,21 @@ import com.pinyougou.mapper.PayLogMapper;
 import com.pinyougou.pojo.TbOrder;
 import com.pinyougou.pojo.TbOrderItem;
 import com.pinyougou.pojo.TbPayLog;
-import com.pinyougou.service.OrderService;
+import com.pinyougou.order.service.OrderService;
 import com.pinyougou.vo.Cart;
 import com.pinyougou.vo.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
 @Service(interfaceClass = OrderService.class)
+@Transactional
 public class OrderServiceImpl extends BaseServiceImpl<TbOrder> implements OrderService {
 
     @Autowired
@@ -67,10 +70,11 @@ public class OrderServiceImpl extends BaseServiceImpl<TbOrder> implements OrderS
         if (cartList != null && cartList.size() > 0) {
 
             double totalFee = 0.0;
-            String orderIds = "";
+            StringBuilder orderIds = new StringBuilder();
 
             for (Cart cart : cartList) {
                 long orderId = idWorker.nextId();
+
                 TbOrder tbOrder = new TbOrder();
                 tbOrder.setOrderId(orderId);
                 tbOrder.setCreateTime(new Date());
@@ -78,7 +82,9 @@ public class OrderServiceImpl extends BaseServiceImpl<TbOrder> implements OrderS
                 //未付款
                 tbOrder.setStatus("1");
                 tbOrder.setUserId(order.getUserId());
-                tbOrder.setSellerId(order.getSellerId());
+                tbOrder.setSourceType(order.getSourceType());
+
+                tbOrder.setSellerId(cart.getSellerId());
 
                 tbOrder.setReceiverAreaName(order.getReceiverAreaName());
                 tbOrder.setReceiver(order.getReceiver());
@@ -100,9 +106,9 @@ public class OrderServiceImpl extends BaseServiceImpl<TbOrder> implements OrderS
                 totalFee += payment;
 
                 if (orderIds.length() > 0) {
-                    orderIds += "," + orderId;
+                    orderIds.append(",").append(orderId);
                 } else {
-                    orderIds += orderId;
+                    orderIds.append(orderId);
                 }
 
             }
@@ -114,7 +120,7 @@ public class OrderServiceImpl extends BaseServiceImpl<TbOrder> implements OrderS
                 payLog.setCreateTime(new Date());
                 payLog.setTotalFee((long) (totalFee * 100));
                 payLog.setUserId(order.getUserId());
-                payLog.setOrderList(orderIds);
+                payLog.setOrderList(orderIds.toString());
                 payLog.setPayType(order.getPaymentType());
                 payLog.setTradeState("0");
 
@@ -125,5 +131,30 @@ public class OrderServiceImpl extends BaseServiceImpl<TbOrder> implements OrderS
 
         }
         return outTradeNo;
+    }
+
+    @Override
+    public TbPayLog findByOutTradeNo(String outTradeNo) {
+        return payLogMapper.selectByPrimaryKey(outTradeNo);
+    }
+
+    @Override
+    public void updateOrderStatus(String outTradeNo, String transaction_id) {
+        TbPayLog payLog = payLogMapper.selectByPrimaryKey(outTradeNo);
+        payLog.setTradeState("1");
+        payLog.setPayTime(new Date());
+        payLog.setTransactionId(transaction_id);
+        payLogMapper.updateByPrimaryKeySelective(payLog);
+
+        String orderList = payLog.getOrderList();
+        String[] orderIds = orderList.split(",");
+
+        TbOrder tbOrder = new TbOrder();
+        tbOrder.setPaymentTime(new Date());
+        tbOrder.setStatus("2");
+
+        Example example = new Example(TbOrder.class);
+        example.createCriteria().andIn("orderId", Arrays.asList(orderIds));
+        orderMapper.updateByExampleSelective(tbOrder, example);
     }
 }

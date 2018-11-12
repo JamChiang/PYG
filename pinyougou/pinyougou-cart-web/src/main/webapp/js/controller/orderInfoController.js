@@ -9,7 +9,7 @@ app.controller("orderInfoController", function ($scope, cartService, addressServ
     $scope.findCartList = function () {
         cartService.findCartList().success(function (response) {
             $scope.cartList = response;
-            $scope.totalValue = cartService.sumValue($scope.cartList, $scope.selectedItemIds)
+            $scope.totalValue = cartService.sumValue($scope.cartList)
         })
     };
 
@@ -20,8 +20,8 @@ app.controller("orderInfoController", function ($scope, cartService, addressServ
 
         cartService.submitOrder($scope.order).success(function (response) {
             if (response.success) {
-                if ($scope.order.payment == '1') {
-                    location.href = "pay.html#?outTradeNO=" + response.message;
+                if ($scope.order.paymentType == '1') {
+                    location.href = "pay.html#?outTradeNo=" + response.message;
                 } else {
                     location.href = "paysuccess.html";
                 }
@@ -50,15 +50,11 @@ app.controller("orderInfoController", function ($scope, cartService, addressServ
     };
 
     $scope.isAddressSelected = function (address) {
-        if (address == $scope.address) {
-            return true;
-        } else {
-            return false;
-        }
+        return $scope.address === address;
     };
 
-    $scope.order={"payment": "1"}
+    $scope.order = {"paymentType": "1"};
     $scope.selectPayType = function (select) {
-        $scope.order.payment = select;
+        $scope.order.paymentType = select;
     };
 });

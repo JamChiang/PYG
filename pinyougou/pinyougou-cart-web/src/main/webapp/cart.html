@@ -64,7 +64,7 @@
 			<h4>全部商品<span>{{totalValue.totalNum}}</span></h4>
 			<div class="cart-main">
 				<div class="yui3-g cart-th">
-					<div class="yui3-u-1-4"><input type="checkbox" checked/> 全部</div>
+					<div class="yui3-u-1-4"><input type="checkbox" ng-model="checkAll" ng-click="selectAll(checkAll)"/> 全部</div>
 					<div class="yui3-u-1-4">商品</div>
 					<div class="yui3-u-1-8">单价（元）</div>
 					<div class="yui3-u-1-8">数量</div>
@@ -73,14 +73,14 @@
 				</div>
 				<div class="cart-item-list" ng-repeat="cart in cartList">
 					<div class="cart-shop">
-						<input type="checkbox" ng-model="sellerChoose" ng-click="sellerAll(sellerChoose,cart)"/>
+						<input type="checkbox" ng-model="cart.check" ng-click="sellerAll(cart)"/>
 						<span class="shopname self">{{cart.seller}}</span>
 					</div>
 					<div class="cart-body">
 						<div class="cart-list" ng-repeat="orderItem in cart.orderItemList">
 							<ul class="goods-list yui3-g">
 								<li class="yui3-u-1-24">
-									<input type="checkbox" ng-checked="sellerCheck" ng-click="updateChooseItemList($event,orderItem.itemId)"/>
+									<input type="checkbox" ng-checked="orderItem.check" ng-click="updateChooseItemList($event,orderItem.itemId,cart)"/>
 								</li>
 								<li class="yui3-u-11-24">
 									<div class="good-item">
@@ -109,7 +109,7 @@
 			</div>
 			<div class="cart-tool">
 				<div class="select-all">
-					<input type="checkbox" />
+					<input type="checkbox" ng-model="checkAll" ng-click="selectAll(checkAll)" />
 					<span>全选</span>
 				</div>
 				<div class="option">
@@ -118,13 +118,13 @@
 					<a href="#none">清除下柜商品</a>
 				</div>
 				<div class="toolbar">
-					<div class="chosed">已选择<span>{{totalValue.totalNum}}</span>件商品</div>
+					<div class="chosed">已选择<span>{{totalValue.sumNum}}</span>件商品</div>
 					<div class="sumprice">
-						<span><em>总价（不含运费） ：</em><i class="summoney">¥{{totalValue.totalMoney.toFixed(2)}}</i></span>
+						<span><em>总价（不含运费） ：</em><i class="summoney">¥{{totalValue.sumMoney.toFixed(2)}}</i></span>
 						<span><em>已节省：</em><i>-¥20.00</i></span>
 					</div>
 					<div class="sumbtn">
-						<a class="sum-btn" href="getOrderInfo.html" target="_blank">结算</a>
+						<a class="sum-btn" href="getOrderInfo.html#?selectedItemIds=={{selectedItemIds}}" target="_blank" >结算</a>
 					</div>
 				</div>
 			</div>
