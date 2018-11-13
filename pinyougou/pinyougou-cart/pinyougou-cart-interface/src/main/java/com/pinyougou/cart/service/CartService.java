@@ -25,4 +25,8 @@ public interface CartService {
     void addCartListToRedis(List<Cart> newCartList, String username);
 
     List<Cart> mergeCartList(List<Cart> cookie_list, List<Cart> redis_list);
+
+    void orderAccount(Long[] selectedItemIds, String username);
+
+    List<Cart> findOrderAccount(String username);
 }

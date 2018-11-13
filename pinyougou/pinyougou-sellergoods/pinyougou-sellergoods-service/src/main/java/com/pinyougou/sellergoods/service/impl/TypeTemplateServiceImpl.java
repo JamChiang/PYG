@@ -1,4 +1,4 @@
-package com.pinyougou.sellergoods.service.iml;
+package com.pinyougou.sellergoods.service.impl;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.alibaba.fastjson.JSONArray;

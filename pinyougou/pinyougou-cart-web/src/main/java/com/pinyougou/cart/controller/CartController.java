@@ -118,7 +118,28 @@ public class CartController {
             e.printStackTrace();
         }
         return Result.fail("修改购物车失败");
-
-
     }
+
+    @GetMapping("/orderAccount")
+    public Result orderAccount(Long[] selectedItemIds) {
+
+        try {
+            String username = SecurityContextHolder.getContext().getAuthentication().getName();
+            if (selectedItemIds != null && selectedItemIds.length > 0) {
+                cartService.orderAccount(selectedItemIds, username);
+                return Result.ok("结算成功!");
+            }
+            return Result.fail("购物车不能为空!");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return Result.fail("结算失败!");
+    }
+
+    @GetMapping("/findOrderAccount")
+    public List<Cart> findOrderAccount() {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        return cartService.findOrderAccount(username);
+    }
+
 }

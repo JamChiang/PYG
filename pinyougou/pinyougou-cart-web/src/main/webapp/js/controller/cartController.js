@@ -70,7 +70,17 @@ app.controller("cartController", function ($scope, cartService) {
 
     $scope.test = function () {
         alert($scope.selectedItemIds);
-    }
+    };
+
+    $scope.orderAccount = function () {
+        cartService.orderAccount($scope.selectedItemIds).success(function (response) {
+            if (response.success) {
+                location.href = "getOrderInfo.html";
+            } else {
+                alert(response.message);
+            }
+        });
+    };
 
 
 })

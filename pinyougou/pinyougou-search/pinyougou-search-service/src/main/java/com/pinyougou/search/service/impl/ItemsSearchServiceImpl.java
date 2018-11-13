@@ -2,7 +2,9 @@ package com.pinyougou.search.service.impl;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.alibaba.fastjson.JSON;
+import com.pinyougou.pojo.TbGoods;
 import com.pinyougou.pojo.TbItem;
+import com.pinyougou.pojo.TbSeckillGoods;
 import com.pinyougou.search.service.ItemsSearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -26,6 +28,7 @@ public class ItemsSearchServiceImpl implements ItemsSearchService {
 
     @Autowired
     private SolrTemplate solrTemplate;
+
 
 
     @Override

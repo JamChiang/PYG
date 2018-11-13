@@ -6,10 +6,17 @@ app.controller("orderInfoController", function ($scope, cartService, addressServ
         })
     };
 
-    $scope.findCartList = function () {
-        cartService.findCartList().success(function (response) {
+    // $scope.findCartList = function () {
+    //     cartService.findCartList().success(function (response) {
+    //         $scope.cartList = response;
+    //         $scope.totalValue = cartService.sumValue($scope.cartList)
+    //     })
+    // };
+
+    $scope.findOrderAccount = function () {
+        cartService.findOrderAccount().success(function (response) {
             $scope.cartList = response;
-            $scope.totalValue = cartService.sumValue($scope.cartList)
+            $scope.totalValue = cartService.sumOrderValue($scope.cartList)
         })
     };
 

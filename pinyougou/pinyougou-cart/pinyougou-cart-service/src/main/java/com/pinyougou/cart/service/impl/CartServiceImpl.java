@@ -8,10 +8,10 @@ import com.pinyougou.pojo.TbOrderItem;
 import com.pinyougou.vo.Cart;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -21,6 +21,9 @@ import java.util.List;
  */
 @Service(interfaceClass = CartService.class)
 public class CartServiceImpl implements CartService {
+
+    //redis中结算列表的名称
+    private static final String ORDERACCOUT_LIST = "ORDERACCOUNT_LIST";
 
     //redis中购物车列表的名称
     private static final String REDIS_CART_LIST = "CART_LIST";
@@ -121,6 +124,45 @@ public class CartServiceImpl implements CartService {
         }
 
         return redis_list;
+    }
+
+    @Override
+    public void orderAccount(Long[] selectedItemIds, String username) {
+        List<Cart> redis_list = findRedisListByUsername(username);
+        List<Cart> orderAccount_list = new ArrayList<>();
+
+        if (redis_list != null && redis_list.size() > 0) {
+            for (Long selectedItemId : selectedItemIds) {
+                for (Cart cart : redis_list) {
+
+                    Cart orderCart = new Cart();
+                    ArrayList<TbOrderItem> orderAccountItemList = new ArrayList<>();
+                    orderCart.setSeller(cart.getSeller());
+                    orderCart.setSellerId(cart.getSellerId());
+
+                    for (TbOrderItem orderItem : cart.getOrderItemList()) {
+                        if (orderItem.getItemId().equals(selectedItemId)) {
+                            orderAccountItemList.add(orderItem);
+                        }
+                    }
+                    orderCart.setOrderItemList(orderAccountItemList);
+
+                    orderAccount_list.add(orderCart);
+                }
+            }
+        }
+        redisTemplate.boundHashOps(ORDERACCOUT_LIST).put(username, orderAccount_list);
+    }
+
+    @Override
+    public List<Cart> findOrderAccount(String username) {
+
+        List<Cart> returnList = (List<Cart>) redisTemplate.boundHashOps(ORDERACCOUT_LIST).get(username);
+        if (returnList != null) {
+            return returnList;
+        } else {
+            return new ArrayList<>();
+        }
     }
 
     /**
