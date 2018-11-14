@@ -6,7 +6,7 @@ import com.github.pagehelper.PageInfo;
 import com.pinyougou.mapper.UserMapper;
 import com.pinyougou.pojo.TbUser;
 import com.pinyougou.user.service.UserService;
-import com.pinyougou.order.service.impl.BaseServiceImpl;
+import com.pinyougou.service.impl.BaseServiceImpl;
 import com.pinyougou.vo.PageResult;
 import org.apache.activemq.command.ActiveMQQueue;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -2,6 +2,7 @@ package com.pinyougou.order.service;
 
 import com.pinyougou.pojo.TbOrder;
 import com.pinyougou.pojo.TbPayLog;
+import com.pinyougou.service.BaseService;
 import com.pinyougou.vo.PageResult;
 
 public interface OrderService extends BaseService<TbOrder> {

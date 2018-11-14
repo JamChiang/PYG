@@ -1,7 +1,7 @@
 package com.pinyougou.user.service;
 
 import com.pinyougou.pojo.TbUser;
-import com.pinyougou.order.service.BaseService;
+import com.pinyougou.service.BaseService;
 import com.pinyougou.vo.PageResult;
 
 public interface UserService extends BaseService<TbUser> {

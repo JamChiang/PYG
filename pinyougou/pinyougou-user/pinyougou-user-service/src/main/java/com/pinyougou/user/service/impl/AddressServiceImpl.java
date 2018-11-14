@@ -6,7 +6,7 @@ import com.github.pagehelper.PageInfo;
 import com.pinyougou.mapper.AddressMapper;
 import com.pinyougou.pojo.TbAddress;
 import com.pinyougou.user.service.AddressService;
-import com.pinyougou.order.service.impl.BaseServiceImpl;
+import com.pinyougou.service.impl.BaseServiceImpl;
 import com.pinyougou.vo.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import tk.mybatis.mapper.entity.Example;
